@@ -1,0 +1,48 @@
+
+"To clarify the delivery details, our administrator will call you at the number specified in the profile settings" = "Да би разјаснили детаље испоруке, наш администратор ће вас позвати на број који је наведен у подешавањима профила";
+"Order status" = "статус";
+"amount" = "износ";
+"Add" = "Додај";
+"Title" = "Наслов";
+"Price" = "Цена";
+"Description" = "Опис";
+"Save" = "Сачувај";
+"Login" = "Ауторизација";
+"Registration" = "Регистрација";
+"email" = "емаил адреса";
+"password" = "лозинка";
+"confirm password" = "Поновите лозинку";
+"Create account" = "Региструјте се";
+"Already have an account" = "Већ имате налог";
+"Catalog" = "Каталог";
+"Cart" = "Колица за куповину";
+"Profile" = "Профиле";
+"Cost" = "Укупно:";
+"Delete all" = "Обриши све";
+"Sent order" = "Ред";
+"Do you want sent an order?" = "Да ли потврђујете наруџбу?";
+"Yes" = "Да";
+"Order is accepted!" = "Ваша поруџбина је прихваћена!";
+"Error: empty order" = "Грешка: празан налог";
+"The order cannot be empty" = "Наруџбина не сме бити празна";
+"Name - MustHave" = "Име";
+"Exit" = "Изађи";
+"Do you really want to leave?" = "Да ли стварно желите да изађете?";
+"Address - MustHave!" = "Адреса за испоруку - обавезно поље";
+"Phone - MustHave" = "Контакт телефон - Обавезно поље";
+"Your orders will be here" = "Ваша наређења ће бити овде";
+"How many" = "Количина";
+"Add to cart" = "Додај у корпу";
+"Update" = "Ажурирај";
+"Delete" = "Избриши";
+"delete" = "Избриши";
+"New" = "Ново";
+"In progress" = "Спремам се";
+"Delivery" = "Достава";
+"Completed" = "Завршено";
+"Canceled" = "Отказано";
+"Back to\n catalog" = "назад у\n каталог";
+"Add to\n cart" = "додај у\n корпу";
+
+
+
