@@ -13,26 +13,25 @@ struct TabBar: View{
                 CatalogView()
            }
             .tabItem {
-                //Image("ButtonCatalogLitle").resizable().scaledToFill()
-                Image(systemName: "book.fill").tint(.white)//.foregroundStyle(.white).opacity(0.0)
+                
+                Image(systemName: "book.fill").tint(.white)
                 Text("Catalog")
             }
-           // .foregroundStyle(.white)
+           
             
             
             CartView(viewModel: CartViewModel.shared)
                 .tabItem {
-                    //Image("ButtonCartLitle").resizable().scaledToFill()
-                    Image(systemName: "cart.circle.fill").tint(.white)//.foregroundStyle(.white)
+                    
+                    Image(systemName: "cart.circle.fill").tint(.white)
                     Text("Cart")
                 }
         
             ProfileView(viewModel: ProfileViewModel(profile: MVUser(id: "", name: "", phone: 0000000000, address: "")))
                 .tabItem {
-                    //Image("ButtonProfileLitle").resizable().scaledToFill()
-                    Image(systemName: "person.circle.fill").tint(.white)//.foregroundStyle(.white)
+                    Image(systemName: "person.circle.fill").tint(.white)
                     Text("Profile")
-                       // .foregroundStyle(.whiteCustom)
+                       
                 }
         }
         

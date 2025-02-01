@@ -13,14 +13,16 @@ struct ProductDetailView: View {
     
     var body: some View {
         
-        VStack{
-            Image(.details)
-            VStack(alignment: .leading){
+        VStack(spacing: 10){
+            //Image(.details)
+            
+            VStack{
                 
                 ScrollView{
                     Image(uiImage: self.viewModel.image)
                         .resizable()
-                        .frame(maxWidth: screen.width, maxHeight: 260)
+                        .scaledToFit()
+                        //.frame(maxWidth: screen.width, maxHeight: 320)
                     
                 }
                 
@@ -28,31 +30,44 @@ struct ProductDetailView: View {
                 VStack(alignment: .leading, spacing: 30){
                     
                     
-                    HStack {
+                    //VStack{
+                        
+                    VStack(alignment: .leading, spacing: 0.1){
                         Text(viewModel.product.title).foregroundStyle(Color.black)
-                            .font(.title2.bold())
+                            .font(.title3.bold())
+                            .padding()
                         
-                        Spacer()
                         
+                        Text("\(viewModel.product.descript)")
+                            .lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1)
+                            .font(.system(size: 14))
+                            .fontWeight(.medium)
+                            .foregroundStyle(Color.black)
                         
-                        Text("\(viewModel.getPrice(count: self.count)) din")
-                            .font(.title2).foregroundStyle(Color.black)
+                        //.padding()
+                            .padding(.horizontal)
+                        //.padding(.vertical, 4)
+                        
                     }
-                    
-                    .padding(.horizontal)
-                    
-                    Text("\(viewModel.product.descript)")
-                        .foregroundStyle(Color.black)
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
-                    
-                    HStack {
-                        Stepper("", value: $count, in: 1...10)
-                        Text("\(self.count)").foregroundStyle(Color.black)
-                            .padding(.leading, 50)
+                        HStack{
+                            
+                            Text("\(viewModel.getPrice(count: self.count)) din")
+                                .font(.title2.bold()).foregroundStyle(Color.black).padding()
+                            Spacer()
+                            HStack {
+                                Stepper("", value: $count, in: 1...10).accentColor(.black)
+                                Text("\(self.count)").foregroundStyle(Color.black)
+                                    .padding(.leading, 5)
+                            }
                         
-                        
-                    }.padding(.horizontal)
+                            
+                            .padding(.horizontal)
+                           
+                            
+                        }
+                   // }
+                    
+                    //.padding(.horizontal)
                     
                     HStack{
                         Button {
@@ -60,12 +75,12 @@ struct ProductDetailView: View {
                         } label: {
                             HStack(spacing: 5){
                                 Image("BackButton")
-                                Text("Back to\n catalog").foregroundStyle(Color.black).font(.system(size: 12))
+                                Text("Back to\n catalog").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 12))
                             }
                         }
-                        .padding()
+                        //.padding()
                         
-                        Spacer()
+                      Spacer()
                         
                         Button {
                             print("add")
@@ -78,27 +93,46 @@ struct ProductDetailView: View {
                         } label: {
                             HStack{
                                 Image(.addCart)
-                                Text("Add to\n cart").foregroundStyle(Color.black).font(.system(size: 12))
+                                Text("Add to\n cart").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 12))
                             }
                         }
-                        .padding()
-                    }
+                    
+                    }.padding(.horizontal)
+                    
+                   
+                    
+                    
+                    
                 }
             }
             .navigationBarBackButtonHidden()
             
             .frame(width: screen.width, height: screen.height * 0.65 )
-            .background(Color.white).ignoresSafeArea()
+            .background(Color.white)
+            .padding(.top, 0)
+            .ignoresSafeArea()
+            
+            
+            About()
+            
+            
+            Image(.spoon).padding(.bottom, 50)
+            
             //Spacer()
+         
         }
+        .frame(width: screen.width, height: screen.height).ignoresSafeArea().background(.blueCustom)
+        //
         .onAppear {
             self.viewModel.getImage()
         }
         
-        .frame(width: screen.width, height: screen.height).ignoresSafeArea()
-        .background(Color.bg).ignoresSafeArea()
+        //.frame(width: screen.width, height: screen.height).ignoresSafeArea()
+        //.background(Color.blue)
+        //.ignoresSafeArea()
         
     }
+        
     
 }
 

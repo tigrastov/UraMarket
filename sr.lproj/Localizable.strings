@@ -43,6 +43,11 @@
 "Canceled" = "Отказано";
 "Back to\n catalog" = "назад у\n каталог";
 "Add to\n cart" = "додај у\n корпу";
+"To use the application you need to log in" = "Да бисте користили апликацију, потребно је да се пријавите";
+"To use the application, you must register and log in" = "Да бисте користили апликацију, морате се регистровати и пријавити";
+"A little about us. We are a food production company Baikal in Belgrade. We are engaged in the production of various semi-finished products and ready meals. We also deliver products around the city. More information on the website. For all questions of interest, do not hesitate - call +381 XXX XXX XXX" = "Мало о нама. Ми смо предузеће за производњу хране Бајкал у Београду. Бавимо се производњом разних полупроизвода и готових јела. Такође испоручујемо производе по целом граду. Више информација на веб страници. За сва питања, не оклевајте да позовете +381 XXX XXX XXX";
+"Add items from the catalog to the cart. You can delete items individually by pressing the button. You can delete all items from the cart by clearing it with one button - Clear cart. If you have any questions, call +381 XXX XXX XXX" = "Додајте артикле из каталога у корпу. Можете избрисати ставке појединачно притиском на дугме. Можете избрисати све артикле из корпе тако што ћете их обрисати једним дугметом - Обриши корпу. Ако имате питања, позовите +381 XXX XXX XXX";
+"Dear customer! We have the following system. You place an order, and we call you on the day of the order at the specified phone number to clarify the delivery details. Therefore, before placing an order, make sure that your phone number is correct, active and available for communication" = "Поштовани купче! Имамо следећи систем. Ви поручујете, а ми Вас позивамо на дан поруџбине на наведени број телефона да разјаснимо детаље испоруке. Стога, пре него што наручите, уверите се да је ваш број телефона тачан, активан и доступан за комуникацију";
 
 
 

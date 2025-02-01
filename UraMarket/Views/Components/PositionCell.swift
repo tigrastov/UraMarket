@@ -9,8 +9,8 @@ struct PositionCell: View {
     
         HStack{
             
-            Text(position.product.title).foregroundStyle(.black)
-                .fontWeight(.bold)
+            Text(position.product.title).lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(.black).fontWeight(.semibold)
+            
             Spacer()
             
             Text("\(position.count)").foregroundStyle(.black)

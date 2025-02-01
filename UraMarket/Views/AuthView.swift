@@ -24,6 +24,7 @@ struct AuthView: View {
             VStack {
                 Image("Logotip").padding(.top, 60)
                     .padding(.leading, 20)
+                
             }.padding(20).padding(.top, 30)
                 .frame(width: screen.width, height: screen.height * 0.2)
             
@@ -34,6 +35,10 @@ struct AuthView: View {
                     .padding(.horizontal, 30)
                     .font(.title2.bold())
                     .foregroundStyle(Color.black)
+                Text(isAuth ? "To use the application you need to log in" : "To use the application, you must register and log in")
+                    .padding()
+                    .font(.title3)
+                    .foregroundStyle(.white)
                 /*
                     .background(Color.white)
                     .clipShape(.rect(cornerRadius: 30))
@@ -114,7 +119,8 @@ struct AuthView: View {
                 }
                 .padding()
                .frame(maxWidth: screen.width)
-               .background(LinearGradient(colors: [Color.black, Color.white], startPoint: .leading, endPoint: .trailing))
+               //.background(.bg)
+               .background(LinearGradient(colors: [Color("blueCustom"), Color.white], startPoint: .leading, endPoint: .trailing))
                 .clipShape(.rect(cornerRadius: 25))
                  .padding(8)
                 .padding(.horizontal, 12)
@@ -135,6 +141,9 @@ struct AuthView: View {
                .padding(.horizontal, 25)
                 .font(.title3.bold())
                 .foregroundStyle(Color.white)
+                
+                
+                Image("Loc").padding()
             }
              .padding()
             .background(GlassView(removeEffects: false))
@@ -146,6 +155,8 @@ struct AuthView: View {
                 Button {} label: {
                     Text("OK")
                 }
+                
+                
             }
             
         }

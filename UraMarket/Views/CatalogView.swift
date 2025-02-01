@@ -44,7 +44,8 @@ struct CatalogView: View {
             //.padding(.bottom, 40)
         }
         
-        .background(Color.bg).ignoresSafeArea()
+        .background(Color.blueCustom).ignoresSafeArea()
+        //.padding(.bottom, 40)
         //.navigationBarTitle("Menu")
         
             .onAppear {

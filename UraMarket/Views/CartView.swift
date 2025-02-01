@@ -13,7 +13,7 @@ struct CartView: View {
         
             VStack {
                
-                Image(.cartHead)
+                Image(.cartHead).padding(.top, 30)
                 
                 VStack {
                     
@@ -44,10 +44,17 @@ struct CartView: View {
                     }.listStyle(.plain)
                         .preferredColorScheme(.light)
                         .navigationTitle("Cart")
-                }.background(Color.white).cornerRadius(20).shadow(radius: 5).padding().padding(.top, 10)
+                    
+                    
+                    
+                    
+                }.background(Color.white).cornerRadius(20).shadow(radius: 5).padding(.horizontal).padding(.top, 10)
                     .frame(height: screen.height / 2)
                 
             
+                
+                
+                
                 HStack(spacing: 150){
                     Button {
                         viewModel.positions.removeAll()
@@ -56,7 +63,7 @@ struct CartView: View {
                         //Image("ClearCartButton")
                         VStack{
                             Image(.garbage)
-                            Text("Delete all").foregroundStyle(Color.black)
+                            Text("Delete all").lineLimit(nil).multilineTextAlignment(.leading).font(.system(size: 12)).foregroundStyle(Color.black)
                         }
                     }
                         
@@ -68,7 +75,7 @@ struct CartView: View {
                     } label: {
                         VStack{
                             Image(.sent)
-                            Text("Sent order").foregroundStyle(.white).fontWeight(.bold)
+                            Text("Sent order").lineLimit(nil).multilineTextAlignment(.leading).foregroundStyle(.white).font(.system(size: 12))
                         }
                         
                     }
@@ -116,13 +123,16 @@ struct CartView: View {
                     }
                     
                    
-                }.padding()
-                    .padding(.bottom, 80)
+                }.padding(.vertical, 5)
+                    
+                
+                CartInfo()
+                    .padding(.bottom, 50)
                     
             }
             .frame(width: screen.width, height: screen.height).ignoresSafeArea()
             
-            .background(.bg).ignoresSafeArea()
+            .background(.blueCustom).ignoresSafeArea()
                
     }
 }

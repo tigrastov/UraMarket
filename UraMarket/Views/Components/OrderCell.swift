@@ -8,7 +8,7 @@ struct OrderCell: View {
     var body: some View {
         VStack{
             HStack{
-                Text("\(order.date)").foregroundStyle(.black).font(.system(size: 8)).font(.body).padding()
+                Text("\(order.date)").lineLimit(nil).multilineTextAlignment(.leading).foregroundStyle(.black).font(.system(size: 10)).padding(.leading)
                 Text("\(order.cost )").bold().frame(width: 90).font(.system(size: 14)).foregroundStyle(Color.red)
                 Text("\(order.status )").frame(width: 100).font(.system(size: 14)).foregroundStyle(.black)
             }

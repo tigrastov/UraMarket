@@ -16,7 +16,7 @@ class ProductDetailViewModel: ObservableObject{
     @Published var count = 0
     
     //@Published var image = UIImage(named: "View")!
-    @Published var image = UIImage(named: "Rectangle")!
+    @Published var image = UIImage(named: "p1")!
     
     init (product: Product){
         self.product = product

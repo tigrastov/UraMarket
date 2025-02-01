@@ -18,9 +18,11 @@ struct ProfileView: View {
         
         VStack{
             
-            Image(.profileText)
+            Image(.profileText).padding(.top, 30)
                 
             VStack(alignment: .leading){
+                
+                
                 
                 HStack{
                     
@@ -34,7 +36,7 @@ struct ProfileView: View {
                     } label: {
                         VStack{
                             Image("ExitCirc")
-                            Text("Exit").foregroundStyle(Color.black).font(.system(size: 12))
+                            Text("Exit").foregroundStyle(Color.white).font(.system(size: 12))
                         }
                         
                         
@@ -75,7 +77,7 @@ struct ProfileView: View {
                     } label: {
                         VStack{
                             Image("NewSave")
-                            Text("Save").foregroundStyle(Color.black).font(.system(size: 12))
+                            Text("Save").foregroundStyle(Color.white).font(.system(size: 12))
                         }
                         
                         
@@ -86,6 +88,10 @@ struct ProfileView: View {
                 .frame(height: 80)
                 
             }
+            
+            
+            
+            SistemInformation()
             
             List{
                 Image("yourOrders")
@@ -105,7 +111,7 @@ struct ProfileView: View {
                 }
             }
             
-            .listStyle(.plain).frame(maxHeight: 250).padding(.bottom, 20).padding(.top, 20).cornerRadius(25).preferredColorScheme(.light)
+            .listStyle(.plain).frame(maxHeight: 250).padding(.bottom, 40).preferredColorScheme(.light)
             
             
             
@@ -116,7 +122,7 @@ struct ProfileView: View {
         /*
         .background(Image("BackProfile").resizable().scaledToFill().ignoresSafeArea())
         */
-        .background(.bg)
+        .background(.blueCustom)
         .onSubmit {
             viewModel.setProfile()
             print("on submit")
