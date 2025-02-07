@@ -14,7 +14,7 @@ struct ProductDetailView: View {
     var body: some View {
         
         VStack(spacing: 10){
-            //Image(.details)
+          
             
             VStack{
                 
@@ -22,31 +22,23 @@ struct ProductDetailView: View {
                     Image(uiImage: self.viewModel.image)
                         .resizable()
                         .scaledToFit()
-                        //.frame(maxWidth: screen.width, maxHeight: 320)
-                    
                 }
-                
-                
+            
                 VStack(alignment: .leading, spacing: 30){
                     
-                    
-                    //VStack{
-                        
                     VStack(alignment: .leading, spacing: 0.1){
                         Text(viewModel.product.title).foregroundStyle(Color.black)
                             .font(.title3.bold())
                             .padding()
-                        
-                        
+                    
                         Text("\(viewModel.product.descript)")
                             .lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1)
                             .font(.system(size: 14))
                             .fontWeight(.medium)
                             .foregroundStyle(Color.black)
                         
-                        //.padding()
+                       
                             .padding(.horizontal)
-                        //.padding(.vertical, 4)
                         
                     }
                         HStack{
@@ -65,20 +57,17 @@ struct ProductDetailView: View {
                            
                             
                         }
-                   // }
-                    
-                    //.padding(.horizontal)
-                    
+                   
                     HStack{
                         Button {
                             presentationMode.wrappedValue.dismiss()
                         } label: {
                             HStack(spacing: 5){
                                 Image("BackButton")
-                                Text("Back to\n catalog").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 12))
+                                Text("Back to\n catalog").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 13)).fontWeight(.semibold)
                             }
                         }
-                        //.padding()
+                        
                         
                       Spacer()
                         
@@ -93,7 +82,7 @@ struct ProductDetailView: View {
                         } label: {
                             HStack{
                                 Image(.addCart)
-                                Text("Add to\n cart").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 12))
+                                Text("Add to\n cart").lineLimit(nil).multilineTextAlignment(.leading).layoutPriority(1).foregroundStyle(Color.black).font(.system(size: 13)).fontWeight(.semibold)
                             }
                         }
                     
@@ -118,22 +107,13 @@ struct ProductDetailView: View {
             
             Image(.spoon).padding(.bottom, 50)
             
-            //Spacer()
-         
         }
         .frame(width: screen.width, height: screen.height).ignoresSafeArea().background(.blueCustom)
         //
         .onAppear {
             self.viewModel.getImage()
         }
-        
-        //.frame(width: screen.width, height: screen.height).ignoresSafeArea()
-        //.background(Color.blue)
-        //.ignoresSafeArea()
-        
     }
-        
-    
 }
 
 /*

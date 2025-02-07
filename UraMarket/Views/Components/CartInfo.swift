@@ -10,7 +10,12 @@ import SwiftUI
 struct CartInfo: View {
     var body: some View {
         VStack{
-            Text("Add items from the catalog to the cart. You can delete items individually by pressing the button. You can delete all items from the cart by clearing it with one button - Clear cart. If you have any questions, call +381 XXX XXX XXX").font(.system(size: 12)).foregroundStyle(.white).padding(.horizontal)
+            Text("Add items from the catalog to the cart. You can delete items individually by pressing the button. You can delete all items from the cart by clearing it with one button - Clear cart. If you have any questions, call +381 XXX XXX XXX").font(.system(size: 14))
+                .foregroundStyle(.white)
+                .lineLimit(nil)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+                
         }
     }
 }

@@ -34,7 +34,6 @@ struct TabBar: View{
                        
                 }
         }
-        
         //.colorInvert()
         .accentColor(.black)
          

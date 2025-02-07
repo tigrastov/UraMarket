@@ -63,7 +63,11 @@ struct CartView: View {
                         //Image("ClearCartButton")
                         VStack{
                             Image(.garbage)
-                            Text("Delete all").lineLimit(nil).multilineTextAlignment(.leading).font(.system(size: 12)).foregroundStyle(Color.black)
+                            Text("Delete all").lineLimit(nil)
+                                .multilineTextAlignment(.leading)
+                                .foregroundStyle(Color.black)
+                                .font(.system(size: 13))
+                                .fontWeight(.semibold)
                         }
                     }
                         
@@ -75,7 +79,10 @@ struct CartView: View {
                     } label: {
                         VStack{
                             Image(.sent)
-                            Text("Sent order").lineLimit(nil).multilineTextAlignment(.leading).foregroundStyle(.white).font(.system(size: 12))
+                            Text("Sent order").lineLimit(nil)
+                                .multilineTextAlignment(.leading)
+                                .foregroundStyle(.white).font(.system(size: 13))
+                                .fontWeight(.semibold)
                         }
                         
                     }

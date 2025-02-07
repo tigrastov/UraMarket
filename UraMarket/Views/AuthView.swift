@@ -36,9 +36,10 @@ struct AuthView: View {
                     .font(.title2.bold())
                     .foregroundStyle(Color.black)
                 Text(isAuth ? "To use the application you need to log in" : "To use the application, you must register and log in")
-                    .padding()
-                    .font(.title3)
+                    .lineLimit(nil)
                     .foregroundStyle(.white)
+                    .font(.system(size: 15))
+                    .padding()
                 /*
                     .background(Color.white)
                     .clipShape(.rect(cornerRadius: 30))

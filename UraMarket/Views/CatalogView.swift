@@ -35,6 +35,7 @@ struct CatalogView: View {
                             }
                             
                         }
+                    
                 }
                     .cornerRadius(15)
                     .shadow(radius: 50)
@@ -51,6 +52,7 @@ struct CatalogView: View {
             .onAppear {
             viewModel.getProducts()
             }
+        
            
     }
 }
