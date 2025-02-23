@@ -25,11 +25,11 @@ struct AddProductView: View {
                 showImagePicker.toggle()
             }
             
-            TextField("Title", text: $title).focused($focus, equals: .first).foregroundStyle(Color.black).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
+            TextField("Title", text: $title).focused($focus, equals: .first).foregroundStyle(Color.primary).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
             
-            TextField("Price", value: $price, format: .number).focused($focus, equals: .second).foregroundStyle(Color.black).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
+            TextField("Price", value: $price, format: .number).focused($focus, equals: .second).foregroundStyle(Color.primary).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
             
-            TextField("Description", text: $description).focused($focus, equals: .third).foregroundStyle(Color.black).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
+            TextField("Description", text: $description).focused($focus, equals: .third).foregroundStyle(Color.primary).padding().background(Color("grey")).cornerRadius(15).shadow(radius: 7)
             
             
             Button {

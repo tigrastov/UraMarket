@@ -120,7 +120,6 @@ struct AuthView: View {
                 }
                 .padding()
                .frame(maxWidth: screen.width)
-               //.background(.bg)
                .background(LinearGradient(colors: [Color("blueCustom"), Color.white], startPoint: .leading, endPoint: .trailing))
                 .clipShape(.rect(cornerRadius: 25))
                  .padding(8)

@@ -31,7 +31,6 @@ struct ProductCell: View {
            */
                 
         }.frame(width: screen.width * 0.65, height: screen.width * 0.65, alignment: .center)
-            .background(Color("ColorMenu"))
             .cornerRadius(15)
             .shadow(radius: 5)
         
