@@ -32,9 +32,6 @@ struct UraMarketApp: App {
     }else{
         NavigationView {
             
-            
-            
-         
             if let user = AuthService.shared.currentUser{
                 
                 if user.uid == "VzxhMgwnAcRNBBRlNalqYLtVVMf2"{
