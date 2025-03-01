@@ -121,18 +121,39 @@ class DatabaseService{
     }
     
     func getProfile(by userID: String? = nil, completion: @escaping(Result<MVUser, Error>) -> ()){
-        usersRef.document(userID != nil ? userID! : AuthService.shared.currentUser!.uid).getDocument { docSnapshot, error in
-            guard let snap = docSnapshot else {return}
+        let userIDToUse = userID ?? AuthService.shared.currentUser?.uid
+        
+        // Проверяем, что userID не nil
+        guard let userID = userIDToUse else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "User ID is missing"])))
+            return
+        }
+
+        usersRef.document(userID).getDocument { docSnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
             
-            guard let data = snap.data() else {return}
-            
-            guard let userName = data["name"] as? String else {return}
-            guard let id = data["id"] as? String else {return}
-            guard let phone = data["phone"] as? Int else {return}
-            guard let address = data["address"] as? String else {return}
-            
+            guard let snap = docSnapshot else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Document snapshot is nil"])))
+                return
+            }
+
+            guard let data = snap.data() else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Document data is nil"])))
+                return
+            }
+
+            guard let userName = data["name"] as? String,
+                  let id = data["id"] as? String,
+                  let phone = data["phone"] as? Int,
+                  let address = data["address"] as? String else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Missing required fields in user data"])))
+                return
+            }
+
             let user = MVUser(id: id, name: userName, phone: phone, address: address)
-            
             completion(.success(user))
         }
     }

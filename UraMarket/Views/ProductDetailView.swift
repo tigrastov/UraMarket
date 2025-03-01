@@ -8,6 +8,7 @@ struct ProductDetailView: View {
     // @State private var size = "Маленький"
     
     @State private var  count = 1
+    @State private var isAuthShow: Bool = false
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -112,6 +113,34 @@ struct ProductDetailView: View {
         //
         .onAppear {
             self.viewModel.getImage()
+        }
+        
+        .overlay {
+            if AuthService.shared.currentUser == nil {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button {
+                            print("Button")
+                            isAuthShow.toggle()
+                        } label: {
+                            Text("Login")
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                                .padding(10)
+                                .background(Color("redFirma").opacity(0.6))
+                                .cornerRadius(20)
+                        }
+                        .padding(.top, 70) // Отступ от верхней части экрана
+                        .padding(.trailing, 15) // Отступ справа
+                    }
+                    Spacer() // Выталкивает кнопку вверх
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                .fullScreenCover(isPresented: $isAuthShow) {
+                    AuthView()
+                }
+            }
         }
     }
 }

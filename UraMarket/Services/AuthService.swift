@@ -17,11 +17,22 @@ class AuthService{
     //Метод для разлогинивания
     
     func signOut(){
-        try! auth.signOut()
+        
+        do{
+            try auth.signOut()
+        } catch let error{
+            print("Ошибка при разлогинивании: \(error.localizedDescription)")
+        }
+        
     }
     
     
-    func signUp(email: String, password: String, completion: @escaping(Result<User, Error>) -> ())  {
+    
+    
+    
+    func signUp(email: String, password: String, completion: @escaping(Result<User, Error>) -> ())
+    
+    {
         
         auth.createUser(withEmail: email,
                         password: password) { result, error in
