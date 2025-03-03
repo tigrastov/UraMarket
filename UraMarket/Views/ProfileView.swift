@@ -1,49 +1,55 @@
-
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileView: View {
-    
+
     enum Interaction: Hashable {
         case first, second, third
     }
-    
+
     @FocusState private var focus: Interaction?
-    
+
     @State private var isQuitAlertPresented = false
     @State private var isAuthViewPresented = false
     @State private var usersOrderShow = false
     @StateObject var viewModel: ProfileViewModel
     @StateObject var viewModelForOrders = AdminOrdersViewModel()
-    @State private var isLoadingProfile = true // Флаг для проверки загрузки профиля
+    @State private var isLoadingProfile = true
+    @State private var alertDeleteUserShow = false
+
+    @State private var showPasswordSheet = false
+    @State private var passwordInput = ""
+
+    @State private var currentUser: User? = AuthService.shared.currentUser
+
+    // Добавляем состояние для показа баннера
+    @State private var showDeleteBanner = false
 
     var body: some View {
-        
         VStack {
-            if AuthService.shared.currentUser == nil {
-                
-                
+            if currentUser == nil {
                 Button(action: {
                     isAuthViewPresented.toggle()
                 }, label: {
-                    Text("Join and order").fontWeight(.semibold).foregroundColor(.white).padding(15).background(Color("redFirma"))
-                        
+                    Text("Join and order")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(15)
+                        .background(Color("redFirma"))
                         .cornerRadius(20)
-                        
                 })
-                
                 .fullScreenCover(isPresented: $isAuthViewPresented) {
                     AuthView()
                 }
+
             } else {
-                // Профиль загружен, отображаем основной контент
                 if isLoadingProfile {
-                    // Показать загрузку данных
                     ProgressView("Loading profile...")
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                 } else {
                     Image(.profileText).padding(.top, 30)
-                    
+
                     VStack(alignment: .leading) {
                         HStack {
                             Image("NameImg").padding()
@@ -55,7 +61,7 @@ struct ProfileView: View {
                                 .background(.white)
                                 .frame(height: 40)
                                 .cornerRadius(25)
-                            
+
                             Button {
                                 isQuitAlertPresented.toggle()
                             } label: {
@@ -70,18 +76,26 @@ struct ProfileView: View {
                             .padding()
                             .confirmationDialog(Text("Do you really want to leave?"), isPresented: $isQuitAlertPresented) {
                                 Button {
-                                    AuthService.shared.signOut() // Выход из системы
-                                    isAuthViewPresented.toggle() // Переход на страницу авторизации
+                                    AuthService.shared.signOut()
+                                    isAuthViewPresented.toggle()
                                 } label: {
-                                    Text("Yes")
+                                    Text("Exit")
                                 }
-                            }
-                            .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
-                                AuthView()
+                                .fullScreenCover(isPresented: $isAuthViewPresented) {
+                                    AuthView()
+                                }
+
+                                Button {
+                                    alertDeleteUserShow = true
+                                } label: {
+                                    Text("Exit and delete account")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.red)
+                                }
                             }
                         }
                         .frame(height: 80)
-                        
+
                         HStack {
                             Image("AdressImg").padding()
                             TextField("Address - MustHave!", text: $viewModel.profile.address)
@@ -95,7 +109,7 @@ struct ProfileView: View {
                         }
                         .padding(.trailing, 12)
                         .frame(height: 80)
-                        
+
                         HStack {
                             Image("PhoneImg").padding()
                             TextField("Phone - MustHave", value: $viewModel.profile.phone, format: .number)
@@ -107,7 +121,7 @@ struct ProfileView: View {
                                 .background(.white)
                                 .frame(height: 40)
                                 .cornerRadius(25)
-                            
+
                             Button {
                                 print("save")
                                 viewModel.setProfile()
@@ -124,13 +138,13 @@ struct ProfileView: View {
                         }
                         .frame(height: 80)
                     }
-                    
+
                     SistemInformation()
-                    
+
                     List {
                         Image("yourOrders")
-                        
-                        if viewModel.orders.count == 0 {
+
+                        if viewModel.orders.isEmpty {
                             Text("Your orders will be here")
                                 .foregroundStyle(.black)
                                 .font(.system(size: 16))
@@ -150,6 +164,23 @@ struct ProfileView: View {
                     .preferredColorScheme(.light)
                 }
             }
+
+            // Баннер, который появляется после удаления аккаунта
+            if showDeleteBanner {
+                VStack {
+                    Text("Account successfully deleted")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+
+                    
+                   
+                    
+                }
+                
+                .cornerRadius(10)
+                .padding()
+            }
         }
         .frame(width: screen.width, height: screen.height)
         .ignoresSafeArea()
@@ -163,7 +194,6 @@ struct ProfileView: View {
                 viewModel.getProfile()
                 viewModel.getOrders()
                 viewModelForOrders.getOrders()
-                // Устанавливаем флаг, когда данные загружены
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.isLoadingProfile = false
                 }
@@ -171,6 +201,54 @@ struct ProfileView: View {
         }
         .onTapGesture {
             focus = nil
+        }
+        .onChange(of: AuthService.shared.currentUser) { newValue in
+            currentUser = newValue // обновляем состояние currentUser при изменении
+        }
+        .alert("Are you sure you want to delete your account?", isPresented: $alertDeleteUserShow) {
+            Button("Yes") {
+                showPasswordSheet = true
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+        .sheet(isPresented: $showPasswordSheet) {
+            VStack(spacing: 20) {
+                Text("Enter your password to confirm deletion")
+                    .font(.headline)
+                SecureField("Password", text: $passwordInput)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+
+                Button("Confirm Delete") {
+                    let email = AuthService.shared.currentUser?.email ?? ""
+                    let password = passwordInput
+
+                    AuthService.shared.reauthenticate(email: email, password: password) { result in
+                        switch result {
+                        case .success():
+                            AuthService.shared.deleteUser { result in
+                                switch result {
+                                case .success():
+                                    print("Account deleted")
+                                    // Показываем баннер после удаления аккаунта
+                                    showDeleteBanner = true
+                                case .failure(let error):
+                                    print("Error deleting account: \(error.localizedDescription)")
+                                }
+                            }
+                        case .failure(let error):
+                            print("Reauthentication failed: \(error.localizedDescription)")
+                        }
+                    }
+                    showPasswordSheet = false
+                }
+                .buttonStyle(.borderedProminent)
+
+                Button("Cancel") {
+                    showPasswordSheet = false
+                }
+            }
+            .padding()
         }
     }
 }

@@ -51,5 +51,10 @@
 "Join and order" = "Придружите се и наручите";
 "I'll register later" = "Регистроваћу се касније";
 "To place an order, you need to register. To do this, go to the Profile menu" = "Да бисте наручили, морате се регистровати. Да бисте то урадили, идите на мени Профил";
-
+"Are you sure you want to delete your account?"="Да ли сте сигурни да желите да избришете свој налог?";
+"Enter your password to confirm deletion" = "Унесите своју лозинку да бисте потврдили брисање";
+"Account successfully deleted" = "Налог је успешно избрисан";
+"Confirm Delete"= "Потврди брисање";
+"Cancel" = "Откажи";
+"Exit and delete account" = "ВИзађите и избришите налог";
 

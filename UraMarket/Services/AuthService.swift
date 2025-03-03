@@ -28,8 +28,6 @@ class AuthService{
     
     
     
-    
-    
     func signUp(email: String, password: String, completion: @escaping(Result<User, Error>) -> ())
     
     {
@@ -71,6 +69,50 @@ class AuthService{
             }
         }
     }
+    
+    
+    
+    func deleteUser(completion: @escaping(Result<Void, Error>) -> ()) {
+        guard let user = auth.currentUser else {
+            completion(.failure(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Пользователь не авторизован"])))
+            return
+        }
+
+        // Сначала удаляем профиль из Firestore
+        DatabaseService.shared.deleteProfile(userId: user.uid) { result in
+            switch result {
+            case .success():
+                // После успешного удаления профиля из Firestore удаляем из Auth
+                user.delete { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(()))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func reauthenticate(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let user = auth.currentUser else {
+            completion(.failure(NSError(domain: "No user", code: 0)))
+            return
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        user.reauthenticate(with: credential) { result, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
 }
 
 

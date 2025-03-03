@@ -52,3 +52,9 @@
   "Join and order" = "Присоединяйся и заказывай";
    "I'll register later" = "Зарегистрируюсь позже";
 "To place an order, you need to register. To do this, go to the Profile menu" = "Для совершения заказа необходимо зарегистрироваться. Для этого вам в меню Профиль";
+"Are you sure you want to delete your account?"="Вы уверены, что хотите удалить свою учетную запись?";
+"Enter your password to confirm deletion" = "Введите пароль для подтверждения удаления";
+ "Account successfully deleted" = "Учетная запись успешно удалена";
+  "Confirm Delete"= "Подтвердить удаление";
+"Cancel" = "Отмена";
+"Exit and delete account" = "Выйти и удалить аккаунт";

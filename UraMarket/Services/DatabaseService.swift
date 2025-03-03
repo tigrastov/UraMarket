@@ -158,6 +158,23 @@ class DatabaseService{
         }
     }
     
+    
+    func deleteProfile(userId: String, completion: @escaping(Result<Void, Error>) -> ()) {
+        let docRef = Firestore.firestore().collection("users").document(userId)
+        docRef.delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
     func setProduct(product: Product, image: Data, completion: @escaping(Result<Product, Error>) ->()) {
         
         StorageService.shared.upload(id: product.id, image: image) { result in
